@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="basic-github-style.css">
 </head>
 <body>
-    <a class="back" href="index.html">На главную <--</a>
+    <a class="back" href="index.html">← На главную</a>
     <header>
         <img src="images/logo.png" alt="Логотип">
         <p>Громов Илья Николаевич</p>
@@ -19,10 +19,126 @@
         <h2>Ч.1 Основные понятия GitHub</h2>
         <hr>
         <p><span class="bold">GitHub</span> - это платформа хостинга, хранения и совместной разработке. Здесь разработчики могут хранить свои проекты, работать над ними в команде, самостоятельно, параллельно и отслеживать изменения, обновления.</p>
-        <p>Для использования GitHub мы используем <span class="bold">репозитории</span> - места, где хранится код проекта, вместе со всей его историей изменений.</p>
+        <p>Для использования GitHub мы ис   пользуем <span class="bold">репозитории</span> - места, где хранится код проекта, вместе со всей его историей изменений.</p>
         <p>Чтобы получить доступ к репозиторию нужно иметь SSH-ключ<br><span class="bold">SSH-ключ</span> - это способ безопасной аутентификации (подключение) на удаленном (облачном) сервере. Он используется для подключения к GitHub, например, без постоянного ввода пароля.</p>
         <p><span class="bold">Коммит</span> - это сохранение изменений в коде проекта. Он создает точку в истории, которую можно сохранить и вернуться к ней. Благодаря коммитам сразу несколько людей могут работать над одним проектом, и не превращать его в кашу</p>
         <p>Коммиты обычно вводятся в <span class="bold">ветки</span> - отдельные линии разработки, которые могут быть созданы для работы над новой версией (функцией) или исправлением, не затрагивая основной код проекта.</p>
+        <h2>Ч.2 Основные инструкции к GitHub</h2>
+        <hr>
+        <h3>Ч.2.1 Как сгенерировать SSH-ключ и добавить к себе на GitHub</h3>
+        <ol>
+            <li>
+                Откройте терминал и выполните 
+                <pre><code><span class="command">ssh-keygen</span> <span class="argument">-t rsa -b 4096</span>
+<span class="comment">// ssh-keygen: Команда для создания нового ключа SSH.</span>
+<span class="comment">// -t rsa: Указывает тип ключа, который следует создать.</span>
+<span class="comment">// -b 4096: Задает размер бит ключа.</span></code></pre>
+            </li>
+            <li>Нажмите Enter, чтобы принять стандартное расположение файла.</li>
+            <li>Введите пароль или нажмите Enter, чтобы оставить его пустым.</li>
+            <li>
+                Выполните, чтобы скопировать (ПКМ) открытый ключ.
+                <pre><code><span class="command">cat</span> <span class="argument">./.ssh/id_rsa.pub</span>
+<span class="comment">// cat: выводит содержимое файла в консоль</span>
+<span class="comment">// './.ssh/id_rsa.pub': путь до файла с ключом</span></code></pre>
+            </li>
+            <li>Перейдите в настройки <span class="bold">GitHub -> SSH and GPG keys -> New SSH key -> Вставьте ключ.</span></li>
+        </ol>
+        <h3>Ч.2.2 Как добавить к себе чей-то репозиторий</h3>
+        <ol>
+            <li>Скопируйте <span class="bold">URL</span> репозитория с GitHub (зеленая кнопка Code).</li>
+            <li>
+                В терминале выполните
+                <pre><code><span class="command">git clone</span> <span class="argument">&lt;URL репозитория&gt;</span></code></pre>
+            </li>
+        </ol>
+        <h3>Ч.2.3 Как добавить на свой GitHub склонированный репозиторий</h3>
+        <ol>
+            <li>Создайте пустой репозиторий на GitHub.</li>
+            <li>Скопируйте его <span class="bold">SSH-ссылку</span>.</li>
+            <li>Войдите в директорию склонированного репозитория в терминале.</li>
+            <li>
+                Выполните
+                <pre><code><span class="command">git remote</span> <span class="argument">set-url origin &lt;SSH-link&gt;</span>
+<span class="comment">// git remote: Команда для взаимодействия с удалёнными репозиториями</span>
+<span class="comment">// set-url: Позволяет установить новый URL-адрес для удаленного репозитория.</span>
+<span class="comment">// origin: Имя удаленного репозитория, обычно это origin</span>
+<span class="comment">// &lt;SSH-link&gt: SSH-ссылка на ваш репозиторий</span></code></pre>
+            </li>
+        </ol>
+        <h3>Ч.2.4 Как сохранить изменения на GitHub (сделать коммит)</h3>
+        <ol>
+            <li>Выполните, чтобы добавить все изменения.</li>
+            <pre><code><span class="command">git add</span> <span class="argument">-A</span>
+<span class="comment">// или</span>
+<span class="command">git add</span> <span class="argument">-all</span></code></pre>
+            <li>Выполните</li>
+            <pre><code><span class="command">git commit</span> <span class="argument">-m "Описание коммита"</span></code></pre>
+            <li>Выполните, чтобы отправить изменения на GitHub.</li>
+            <pre><code><span class="command">git push</span></code></pre>
+        </ol>
+        <h3>Ч.2.5 Как работать со своим репозиторием с другого устройства</h3>
+        <ol>
+            <li>Склонируйте свой репозиторий с GitHub на другое устройство</li>
+            <pre><code><span class="command">git clone</span> <span class="argument">&lt;URL вашего репозитория&gt;</span></code></pre>
+            <li>Вносите изменения, коммитите и отправляйте их обратно на GitHub.</li>
+        </ol>
+        <h3>Ч.2.6 Как открыть VSCode из терминала Linux:</h3>
+        <ol>
+            <li>В терминале выполните для открытия текущего каталога в VSCode.</li>
+            <pre><code><span class="command">code</span> <span class="argument">&lt;имя-файла(папки)&gt;</span></code></pre>
+        </ol>
+        <h3>Ч.2.7 Как запустить программу в терминале (через Node.js)</h3>
+        <ol>
+            <pre><code><span class="command">node</span> <span class="argument">имя_файла.js</span></code></pre>
+        </ol>
+        <h3>Ч.2.8 Как создать ветку</h3>
+        <ol>
+            <li>Выполните, чтобы создать новую ветку.</li>
+            <pre><code><span class="command">git branch</span> <span class="argument">&lt;Новая ветка&gt;</span></code></pre>
+            <li>Выполните, чтобы переключиться на новую ветку.</li>
+            <pre><code><span class="command">git checkout</span> <span class="argument">&lt;Новая ветка&gt;</span></code></pre>
+            <li>*Или используйте для создания и переключения на новую ветку сразу.</li>
+            <pre><code><span class="command">git checkout</span> <span class="argument">-b &lt;Новая ветка&gt;</span></code></pre>
+        </ol>
+        <h2>Ч.3 Часто задаваемые вопросы</h2>
+        <hr>
+        <ol>
+            <li>В каком случае нужно генерировать новый <span class="bold">SSH-ключ</span>:</li>
+            <ul>
+                <li>Когда вы впервые начинаете работу с <span class="bold">GitHub.</span></li>
+                <li>При использовании нового компьютера или сервера для работы с репозиториями.</li>
+                <li>Когда старый ключ утерян или скомпрометирован.</li>
+            </ul>
+            <a>1.1 Могу ли я использовать один и тот же <span class="bold">SSH-ключ</span> на разных устройствах:</a>
+            <ul>
+                <li>Да, вы можете использовать один и тот же <span class="bold">SSH-ключ</span> на разных устройствах. Это удобно при работе с несколькими устройствами.</li>
+            </ul>
+            <li>В каких случаях надо использовать <span class="bold">git config user.name (user.email) &lt;аргументы&gt;</span>:</li>
+            <ul>
+                <li>При первой настройке Git на новом устройстве.</li>
+                <li>При изменении вашего имени или электронной почты.</li>
+                <li>Когда вам нужно использовать разные имена или адреса электронной почты для разных проектов.</li>
+            </ul>
+            <li>В каком случае нужно создавать <span class="bold">ветку</span> и для чего она нужна:</li>
+            <ul>
+                <li>Новая функциональность: создайте ветку для работы над новой функцией, чтобы не затрагивать основной код.</li>
+                <li>Исправление ошибок: создайте ветку для исправления ошибок, чтобы избежать конфликтов с основной разработкой.</li>
+                <li>Разработка параллельных версий: создайте ветку для разработки и тестирования новых идей без влияния на стабильный код.</li>
+            </ul>
+            <li>Что писать в комментарии для <span class="bold">git commit</span>:</li>
+            <ul>
+                <li>Краткое, но информативное описание изменений, чтобы понять суть коммита.</li>
+                <li>Укажите, какие задачи решает этот коммит.</li>
+                <li>Следуйте принципу "Как" и "Почему" для более полного объяснения.</li>
+            </ul>
+            <li>Что такое <span class="bold">Pull Request</span> и зачем он нужен:</li>
+            <ul>
+                <li><span class="bold">Pull Request</span> (или <span class="bold">Merge Request</span>) - это запрос на внесение изменений из вашей ветки в основную ветку проекта.</li>
+                <li>Используется для обсуждения и рецензии ваших изменений перед их объединением с основным кодом.</li>
+                <li>Позволяет совершать изменения согласованно и избегать конфликтов при слиянии кода.</li> 
+            </ul>
+        </ol>
     </main>
 
     <footer>

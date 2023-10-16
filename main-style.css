@@ -1,16 +1,30 @@
 @font-face {
-    font-family: 'Roboto';
-    src: '../fonts/Roboto/Roboto-Regular.ttf';
+  font-family: 'Roboto';
+  src: url('fonts/Roboto/Roboto-Regular.ttf') format(trueType);
+  font-weight: normal;
 }
 
 @font-face {
-    font-family: 'Montserrat';
-    src: '../fonts/Montserrat/static/Montserrat-Regular.ttf';
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat/static/Montserrat-Regular.ttf') format(trueType);
+  font-weight: normal;
 }
 
+@font-face {
+  font-family: 'Roboto';
+  src: url('fonts/Roboto/Roboto-Bold.ttf') format(trueType);
+  font-weight: bold;
+
+}
+
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat/static/Montserrat-Bold.ttf') format(trueType);
+  font-weight: bold;
+}
 /*Цвета триады */
 .orange-bg{
-    background-color: #FFB540;
+    background-color: #e49814;
 }
 
 .purple-bg{
